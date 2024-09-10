@@ -1,3 +1,12 @@
+// NOTE: Adding special comments describing
+// the functions we use with types, params etc.
+// Add a comment at the very top of the file: // @ts-check
+// to get type checking on this file
+/**
+ * @function router
+ * @param {string} pathname
+ */
+
 // This function controls which JavaScript file is loaded on which page
 // In order to add additional pages, you will need to implement them below
 // You may change the behaviour or approach of this file if you choose

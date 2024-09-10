@@ -1,5 +1,10 @@
+// @ts-check
 import { API_KEY } from "./constants";
 
+/**
+ * @function headers
+ * @returns {Headers} headers
+ */
 export function headers() {
   const headers = new Headers();
 
