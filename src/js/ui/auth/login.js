@@ -1,16 +1,15 @@
-// @ts-check
 
 import { login } from "../../api/auth/login";
 
 /**
  * @function emailCheck
- * @param {FormDataEntryValue | null} email
+ * @param {FormDataEntryValue} email
  * @returns {boolean}
  */
 function emailCheck(email) {
   console.log(email);
   const emailRegex = /[^@]*@stud\.noroff\.no/g;
-  let emailMatch = emailRegex.exec(email);
+  let emailMatch = emailRegex.test(email);
 
   console.log(emailMatch);
 
@@ -22,12 +21,12 @@ function emailCheck(email) {
 }
 /**
  * @function pswCheck
- * @param {FormDataEntryValue | null} password
+ * @param {string} password
  * @returns {boolean}
  */
 function pswCheck(password) {
   const pswRegex = /[a-zA-Z0-9]{8,20}/g;
-  let pswMatch = pswRegex.exec(password);
+  let pswMatch = pswRegex.test(password);
   if (!pswMatch) {
     alert("Passord ikke gylding, må være minst 8 tegn");
     return false;
@@ -40,7 +39,7 @@ function pswCheck(password) {
  */
 export async function onLogin(event) {
   event.preventDefault();
-  //@ts-ignore
+
   const formData = new FormData(event.target);
   const email = formData.get("email");
   const password = formData.get("password");

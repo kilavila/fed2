@@ -9,8 +9,8 @@ import {
 /**
  * @function login
  * @param {Object} form
- * @param {FormDataEntryValue | null} form.email
- * @param {FormDataEntryValue | null} form.password
+ * @param {FormDataEntryValue} form.email
+ * @param {FormDataEntryValue} form.password
  * @returns {Promise} result
  */
 export async function login({ email, password }) {
