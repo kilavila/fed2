@@ -27,15 +27,14 @@ export async function login({ email, password }) {
       headers: headers(),
       body: JSON.stringify(reqBody),
     });
- 
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);
-    };
+    }
 
     const result = await response.json();
 
-    return result;
+    return result.data;
   } catch (error) {
     console.error(error.message);
   }
