@@ -1,7 +1,12 @@
-import { login } from "../../api/auth/login";
-
 // @ts-check
 
+import { login } from "../../api/auth/login";
+
+/**
+ * @function emailCheck
+ * @param {FormDataEntryValue | null} email
+ * @returns {boolean}
+ */
 function emailCheck(email) {
   console.log(email);
   const emailRegex = /[^@]*@stud\.noroff\.no/g;
@@ -15,7 +20,11 @@ function emailCheck(email) {
   }
   return true;
 }
-
+/**
+ * @function pswCheck
+ * @param {FormDataEntryValue | null} password
+ * @returns {boolean}
+ */
 function pswCheck(password) {
   const pswRegex = /[a-zA-Z0-9]{8,20}/g;
   let pswMatch = pswRegex.exec(password);
@@ -25,8 +34,13 @@ function pswCheck(password) {
   }
   return true;
 }
+/**
+ * @function onLogin
+ * @param {SubmitEvent} event
+ */
 export async function onLogin(event) {
   event.preventDefault();
+  //@ts-ignore
   const formData = new FormData(event.target);
   const email = formData.get("email");
   const password = formData.get("password");
