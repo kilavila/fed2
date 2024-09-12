@@ -1,6 +1,12 @@
+// @ts-check
+
 import { register } from "../../api/auth/register";
 import { emailCheck, pswCheck, namecheck } from "../../utilities/regex";
-
+//! Gjør om form value. 
+/**
+ * @function onRegister
+ * @param {SubmitEvent} event
+ */
 export async function onRegister(event) {
   event.preventDefault();
   console.log(event);
@@ -23,16 +29,16 @@ export async function onRegister(event) {
 
   console.log(formData);
 
-    try {
-      // Kall register-funksjonen (husk å implementere den riktig)
-      const result = await register(formData);
+  try {
+    // Kall register-funksjonen (husk å implementere den riktig)
+    const result = await register(formData);
 
-      alert("Registration successful!");
-      console.log("Registration data:", result);
+    alert("Registration successful!");
+    console.log("Registration data:", result);
 
-      // window.location.href = '/welcome';
-    } catch (error) {
-      console.error("Registration failed:", error);
-      alert("Registration failed. Please try again.");
-    }
+    // window.location.href = '/welcome';
+  } catch (error) {
+    console.error("Registration failed:", error);
+    alert("Registration failed. Please try again.");
+  }
 }
