@@ -1,9 +1,9 @@
-
+//ts-check
 import { login } from "../../api/auth/login";
 
 /**
  * @function emailCheck
- * @param {FormDataEntryValue} email
+ * @param {string} email
  * @returns {boolean}
  */
 function emailCheck(email) {
@@ -40,9 +40,9 @@ function pswCheck(password) {
 export async function onLogin(event) {
   event.preventDefault();
 
-  const formData = new FormData(event.target);
-  const email = formData.get("email");
-  const password = formData.get("password");
+  const form = event.target;
+  const email = form[0].value;
+  const password = form[1].value;
 
   if (!emailCheck(email) || !pswCheck(password)) {
     return;
@@ -55,3 +55,4 @@ export async function onLogin(event) {
 
   window.location.href = "/";
 }
+ //TODO: Hente ut brukerdata.
