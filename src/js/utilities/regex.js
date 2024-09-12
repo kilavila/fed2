@@ -4,11 +4,8 @@
  * @returns {boolean}
  */
 function emailCheck(email) {
-  console.log(email);
   const emailRegex = /^[\w\-.]+@(stud\.)?noroff\.no$/;
   let emailMatch = emailRegex.test(email);
-
-  console.log(emailMatch);
 
   if (!emailMatch) {
     alert("Epost ikke gylding, må være en stud.noroff.no epost");
@@ -32,4 +29,19 @@ function pswCheck(password) {
   return true;
 }
 
-export { emailCheck, pswCheck };
+/**
+ * @function namecheck
+ * @param {string} name
+ * @returns {boolean}
+ */
+function namecheck(name) {
+  const nameRegex = /^[a-zA-Z\_]+$/;
+  let nameMatch = nameRegex.test(name);
+  if (!nameMatch) {
+    alert("Navn ikke gyldig,kan bare inneholde små/store bokstaver a-Z og _");
+    return false;
+  }
+  return true;
+}
+
+export { emailCheck, pswCheck, namecheck };

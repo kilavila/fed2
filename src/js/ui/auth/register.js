@@ -1,28 +1,17 @@
 import { register } from "../../api/auth/register";
+import { emailCheck, pswCheck, namecheck } from "../../utilities/regex";
 
 export async function onRegister(event) {
   event.preventDefault();
+  console.log(event);
 
   const form = event.target;
-
+  console.log(form);
   const name = form.name.value;
   const email = form.email.value;
   const password = form.password.value;
-  const nameRegex = /^[a-zA-Z\_]+$/;
-  const emailRegex = /^[\w\-.]+@(stud\.)?noroff\.no$/; 
-  const pswRegex = /[a-zA-Z0-9]{8,20}/g;
 
-  if (!nameRegex.test(name)) {
-    alert("Navn ikke gylding, må være et ord");
-    return;
-  }
-
-  if (!emailRegex.test(email)) {
-    alert("Epost ikke gylding, må være en stud.noroff.no epost");
-    return;
-  }
-  if (!pswRegex.test(password)) {
-    alert("Passord ikke gylding, må være minst 8 tegn");
+  if (!emailCheck(email) || !pswCheck(password) || !namecheck(name)) {
     return;
   }
 
@@ -32,16 +21,18 @@ export async function onRegister(event) {
     password,
   };
 
-  try {
-    // Kall register-funksjonen (husk å implementere den riktig)
-    const result = await register(formData);
+  console.log(formData);
 
-    alert("Registration successful!");
-    console.log("Registration data:", result);
+    try {
+      // Kall register-funksjonen (husk å implementere den riktig)
+      const result = await register(formData);
 
-    // window.location.href = '/welcome';
-  } catch (error) {
-    console.error("Registration failed:", error);
-    alert("Registration failed. Please try again.");
-  }
+      alert("Registration successful!");
+      console.log("Registration data:", result);
+
+      // window.location.href = '/welcome';
+    } catch (error) {
+      console.error("Registration failed:", error);
+      alert("Registration failed. Please try again.");
+    }
 }

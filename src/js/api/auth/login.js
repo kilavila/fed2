@@ -1,11 +1,6 @@
 // @ts-check
 import { headers } from "../headers";
-import {
-  API_KEY,
-  API_AUTH_LOGIN,
-  API_AUTH_REGISTER,
-  API_SOCIAL_POSTS,
-} from "./../../api/constants";
+import { API_AUTH_LOGIN } from "./../../api/constants";
 /**
  * @function login
  * @param {Object} form
