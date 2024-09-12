@@ -8,25 +8,21 @@ export async function onRegister(event) {
   const name = form.name.value;
   const email = form.email.value;
   const password = form.password.value;
-  const nameRegex = /^[a-zA-Z\s]*$/;
-  const emailRegex = /[^@]*@stud\.noroff\.no/g;
+  const nameRegex = /^[a-zA-Z\_]+$/;
+  const emailRegex = /^[\w\-.]+@(stud\.)?noroff\.no$/; 
   const pswRegex = /[a-zA-Z0-9]{8,20}/g;
 
   if (!nameRegex.test(name)) {
     alert("Navn ikke gylding, må være et ord");
     return;
   }
+
   if (!emailRegex.test(email)) {
     alert("Epost ikke gylding, må være en stud.noroff.no epost");
     return;
   }
   if (!pswRegex.test(password)) {
     alert("Passord ikke gylding, må være minst 8 tegn");
-    return;
-  }
-
-  if (!name || !email || !password) {
-    alert("Alle felter er obligatoriske");
     return;
   }
 
@@ -45,7 +41,6 @@ export async function onRegister(event) {
 
     // window.location.href = '/welcome';
   } catch (error) {
-    // Håndter feil (f.eks. vise en feilmelding)
     console.error("Registration failed:", error);
     alert("Registration failed. Please try again.");
   }

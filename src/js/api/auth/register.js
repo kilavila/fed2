@@ -1,9 +1,6 @@
 import { headers } from "../headers";
 import {
-  API_KEY,
-  API_AUTH_LOGIN,
   API_AUTH_REGISTER,
-  API_SOCIAL_POSTS,
 } from "./../../api/constants";
 
 export async function register({
