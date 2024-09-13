@@ -1,10 +1,10 @@
-//ts-check
+//@ts-check
 import { login } from "../../api/auth/login";
 import { emailCheck, pswCheck } from "../../utilities/regex";
 
 /**
  * @function onLogin
- * @param {SubmitEvent} event
+ * @param {Event} event
  */
 export async function onLogin(event) {
   event.preventDefault();
