@@ -4,8 +4,8 @@ import { API_AUTH_LOGIN } from "./../../api/constants";
 /**
  * @function login
  * @param {Object} form
- * @param {FormDataEntryValue} form.email
- * @param {FormDataEntryValue} form.password
+ * @property {string} form.email
+ * @property {string} form.password
  * @returns {Promise} result
  */
 export async function login({ email, password }) {

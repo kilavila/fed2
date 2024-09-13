@@ -4,7 +4,7 @@ import { emailCheck, pswCheck } from "../../utilities/regex";
 
 /**
  * @function onLogin
- * @param {Event} event
+ * @param {SubmitEvent} event
  */
 export async function onLogin(event) {
   event.preventDefault();
