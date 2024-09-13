@@ -12,9 +12,9 @@ export async function onRegister(event) {
   console.log(event);
 
   const form = event.target;
-  const emailForm = form[0].value;
-  const passwordForm = form[1].value;
-  const nameForm = form[2].value;
+  const emailForm = form ? form[0].value : "";
+  const passwordForm = form ? form[1].value : "";
+  const nameForm = form ? form[2].value : "";
 
   if (!emailForm || !passwordForm || !nameForm) {
     console.error("Ett eller flere skjemaelementer ble ikke funnet");

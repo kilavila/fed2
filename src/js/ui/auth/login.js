@@ -10,8 +10,8 @@ export async function onLogin(event) {
   event.preventDefault();
 
   const form = event.target;
-  const email = form[0].value;
-  const password = form[1].value;
+  const email = form ? form[0].value : ""; //inline if else.
+  const password = form ? form[1].value : "";
 
   if (!emailCheck(email) || !pswCheck(password)) {
     return;
