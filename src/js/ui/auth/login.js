@@ -18,8 +18,10 @@ export async function onLogin(event) {
   }
 
   const data = await login({ email, password });
-  console.log(data);
+  if (!data) return;
+  
 
+  console.log(data);
   localStorage.setItem("token", data.accessToken);
 
   window.location.href = "/";

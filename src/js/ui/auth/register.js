@@ -11,9 +11,11 @@ export async function onRegister(event) {
   console.log(event);
 
   const form = event.target;
-  const email = form ? form[0].value : "";
-  const password = form ? form[1].value : "";
-  const name = form ? form[2].value : "";
+  const name = form ? form[0].value : "";
+  const email = form ? form[1].value : "";
+  const password = form ? form[2].value : "";
+
+  console.log(email);
 
   if (!emailCheck(email) || !pswCheck(password) || !namecheck(name)) {
     return;
@@ -37,5 +39,5 @@ export async function onRegister(event) {
   alert("Registration successful!");
   console.log("Registration data:", result);
 
-  // window.location.href = '/welcome';
+  window.location.href = "/auth/login/";
 }
