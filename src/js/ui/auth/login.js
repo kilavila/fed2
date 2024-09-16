@@ -36,17 +36,3 @@ export async function onLogin(event) {
 
   window.location.href = "/";
 }
-
-export function getUserInfo() {
-  const storeduserInfo = localStorage.getItem("userInfo");
-  return storeduserInfo ? JSON.parse(storeduserInfo) : null;
-}
-
-export function loadUserInfo() {
-  const userInfo = getUserInfo();
-  if (userInfo) {
-    console.log("userInfo from localStorage");
-  } else {
-    console.log("no userInfo from localStorage");
-  }
-}
