@@ -7,3 +7,18 @@ authGuard();
 const form = document.forms.createPost;
 
 form.addEventListener("submit", onCreatePost);
+
+
+
+
+// {
+//     "title": "string",
+//     "body": "string",
+//     "tags": [
+//       "string"
+//     ],
+//     "media": {
+//       "url": "string",
+//       "alt": ""
+//     }
+//   }
