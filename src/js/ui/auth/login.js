@@ -19,11 +19,34 @@ export async function onLogin(event) {
 
   const data = await login({ email, password });
   if (!data) return;
-  
 
   console.log(data);
+
+  const user = {
+    name: data.name,
+    email: data.email,
+    bio: data.bio,
+    avatar: data.avatar,
+    banner: data.banner,
+  };
+
   localStorage.setItem("token", data.accessToken);
+
+  localStorage.setItem("userInfo", JSON.stringify(user));
 
   window.location.href = "/";
 }
-//TODO: Hente ut brukerdata.
+
+export function getUserInfo() {
+  const storeduserInfo = localStorage.getItem("userInfo");
+  return storeduserInfo ? JSON.parse(storeduserInfo) : null;
+}
+
+export function loadUserInfo() {
+  const userInfo = getUserInfo();
+  if (userInfo) {
+    console.log("userInfo from localStorage");
+  } else {
+    console.log("no userInfo from localStorage");
+  }
+}
