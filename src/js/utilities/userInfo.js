@@ -11,4 +11,3 @@ export function clearUserInfo() {
 export function isUserLoggedIn() {
   return !!localStorage.getItem("userInfo");
 }
-//test
