@@ -1,15 +1,8 @@
 import { API_SOCIAL_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers";
 
-export async function createPost({ title, body, tags, media }) {
+export async function createPost(reqBody) {
   try {
-    const reqBody = {
-      title: title,
-      body: body,
-      tags: tags,
-      media: media,
-    };
-
     const response = await fetch(API_SOCIAL_POSTS, {
       method: "POST",
       headers: headers(),

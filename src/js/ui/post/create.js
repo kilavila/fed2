@@ -1,3 +1,5 @@
+import { createPost } from "../../api/post/create";
+
 export async function onCreatePost(event) {
   event.preventDefault();
 
@@ -6,6 +8,8 @@ export async function onCreatePost(event) {
   const body = form ? form[1].value : "";
   const tags = form ? form[2].value : "";
   const media = form ? form[3].value : "";
+
+  const tagArr = tags.split(" ");
 
   const imgExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
 
@@ -24,6 +28,18 @@ export async function onCreatePost(event) {
     alert("Please enter a valid image URL");
     return;
   }
+  const reqBody = {
+    title: title,
+    body: body,
+    tags: tagArr,
+    media: {
+      url: media,
+      alt: "",
+    },
+  };
 
-  console.log(title, body, tags, media);
+  const post = await createPost(reqBody);
+  console.log(post);
+
+  window.location.href = "/post/single-post/?id=" + post.id;
 }
