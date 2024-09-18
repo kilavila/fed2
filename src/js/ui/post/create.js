@@ -37,9 +37,17 @@ export async function onCreatePost(event) {
       alt: "",
     },
   };
+  try {
+    const post = await createPost(reqBody);
 
-  const post = await createPost(reqBody);
-  console.log(post);
-
-  window.location.href = "/post/single-post/?id=" + post.id;
+    if (post && post.id) {
+      alert("Post created successfully!");
+      window.location.href = `/post/single-post/?id=${post.id}`;
+    } else {
+      throw new Error("Post ID not returned");
+    }
+  } catch (error) {
+    console.error("Error creating post:", error);
+    alert("There was an error creating the post. Please try again.");
+  }
 }

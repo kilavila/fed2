@@ -1,7 +1,43 @@
 import { readPost } from "../../api/post/read";
 
 export async function onSinglePost(id) {
-  const post = await readPost(id);
-  console.log(post);
+  try {
+    const post = await readPost(id);
+
+    if (!post) {
+      throw new Error("Post not found");
+    }
+
+    const postContainer = document.createElement("div");
+    postContainer.classList.add("post");
+
+    const title = document.createElement("h1");
+    title.innerText = post.title || "No title available";
+    postContainer.appendChild(title);
+
+    const body = document.createElement("p");
+    body.innerText = post.body || "No content available";
+    postContainer.appendChild(body);
+
+    if (post.media && post.media.url) {
+      const img = document.createElement("img");
+      img.src = post.media.url;
+      img.alt = post.media.alt || "Post image";
+      postContainer.appendChild(img);
+    } else {
+      const defaultImg = document.createElement("img");
+      defaultImg.src = "/img/default.jpg";
+      defaultImg.alt = "Default image";
+      postContainer.appendChild(defaultImg);
+    }
+
+    const tags = document.createElement("p");
+    tags.innerText = post.tags ? post.tags.join(", ") : "No tags";
+    postContainer.appendChild(tags);
+
+    document.body.appendChild(postContainer);
+  } catch (error) {
+    console.error("Error updating post content:", error);
+    alert("There was an error updating the post content. Please try again.");
+  }
 }
-//TODO: gjør noe med dataen du får inn.
