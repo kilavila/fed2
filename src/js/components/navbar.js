@@ -1,3 +1,26 @@
+const menuItems = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "New Post",
+    url: "/post/create/",
+  },
+  {
+    name: "Login",
+    url: "/auth/login/",
+  },
+  {
+    name: "Register",
+    url: "/auth/register/",
+  },
+  {
+    name: "My Profile",
+    url: "/profile/",
+  },
+];
+
 export default function navbar() {
   const nav = document.createElement("nav");
   nav.classList.add("navbar");
@@ -8,15 +31,13 @@ export default function navbar() {
   const menu = document.createElement("div");
   menu.classList.add("menu");
 
-  const homeUrl = document.createElement("a");
-  homeUrl.href = "/";
-  homeUrl.innerText = "Home";
+  menuItems.map((item) => {
+    const atag = document.createElement("a");
+    atag.href = item.url;
+    atag.innerText = item.name;
 
-  const newPost = document.createElement("a");
-  newPost.href = "/post/create/";
-  newPost.innerText = "New Post";
-
-  menu.append(homeUrl, newPost);
+    menu.append(atag);
+  });
   nav.append(branding, menu);
 
   document.body.prepend(nav);

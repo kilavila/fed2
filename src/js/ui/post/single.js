@@ -11,6 +11,10 @@ export async function onSinglePost(id) {
     const postContainer = document.createElement("div");
     postContainer.classList.add("post");
 
+    const author = document.createElement("p");
+    author.innerText = post.author.name;
+    postContainer.appendChild(author);
+
     const title = document.createElement("h1");
     title.innerText = post.title || "No title available";
     postContainer.appendChild(title);

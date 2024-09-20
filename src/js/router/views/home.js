@@ -19,6 +19,9 @@ if (Allposts) {
     const userInfoDiv = document.createElement("div");
     userInfoDiv.className = "user-Info";
 
+    const author = document.createElement("p");
+    author.innerText = post.author.name;
+
     const articleBody = document.createElement("div");
     articleBody.className = "article-Body";
 
@@ -28,7 +31,12 @@ if (Allposts) {
     articleText.innerText = post.body;
 
     const articleTags = document.createElement("p");
-    articleTags.innerText = post.tags;
+    articleTags.className = "tags";
+    post.tags.map((tag) => {
+      const tagSpan = document.createElement("span");
+      tagSpan.innerText = tag;
+      articleTags.append(tagSpan);
+    });
 
     const articleImg = document.createElement("img");
     articleImg.src = post.media.url;
@@ -40,6 +48,7 @@ if (Allposts) {
       window.location.href = `/post/single-post/?id=${post.id}`;
     });
 
+    userInfoDiv.append(author);
     articleBody.append(
       articleTitle,
       articleText,
