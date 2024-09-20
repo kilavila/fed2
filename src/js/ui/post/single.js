@@ -30,10 +30,15 @@ export async function onSinglePost(id) {
       defaultImg.alt = "Default image";
       postContainer.appendChild(defaultImg);
     }
-
     const tags = document.createElement("p");
     tags.innerText = post.tags ? post.tags.join(", ") : "No tags";
     postContainer.appendChild(tags);
+    const backButton = document.createElement("button");
+    backButton.innerText = "Back";
+    backButton.onclick = () => {
+      window.location.href = "/";
+    };
+    postContainer.appendChild(backButton);
 
     document.body.appendChild(postContainer);
   } catch (error) {
