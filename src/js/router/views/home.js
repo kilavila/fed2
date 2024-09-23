@@ -38,9 +38,11 @@ if (Allposts) {
       articleTags.append(tagSpan);
     });
 
-    const articleImg = document.createElement("img");
-    articleImg.src = post.media.url;
-    articleImg.alt = post.media.alt || "Post image";
+    const img = document.createElement("img");
+    if (post.media && post.media.url) {
+      img.src = post.media.url;
+      img.alt = post.media.alt || "Post image";
+    }
 
     const articlebtn = document.createElement("button");
     articlebtn.innerText = "Read Post";
@@ -49,13 +51,7 @@ if (Allposts) {
     });
 
     userInfoDiv.append(author);
-    articleBody.append(
-      articleTitle,
-      articleText,
-      articleTags,
-      articleImg,
-      articlebtn
-    );
+    articleBody.append(articleTitle, articleText, articleTags, img, articlebtn);
     article.append(userInfoDiv, articleBody);
     document.querySelector(".posts").append(article);
   });
