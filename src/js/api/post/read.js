@@ -42,4 +42,25 @@ export async function readPosts(limit = 12, page = 1, tag) {
   }
 }
 
-export async function readPostsByUser(username, limit = 12, page = 1, tag) {}
+
+//! hvor du vil hente ut postene til en spesss bruker. 
+export async function readPostsByUser(username, limit = 12, page = 1, tag) {
+  try {
+    const response = await fetch(
+      `${API_SOCIAL_POSTS}?limit=12&page=1&_author=true&_reactions=true&_comments=true`,
+      {
+        method: "GET",
+        headers: headers(),
+      }
+    );
+    console.log(response);
+    if (!response.ok) {
+      throw new Error(`Response Status: ${response.status}`);
+    }
+    const result = await response.json();
+    console.log(result);
+    return result.data;
+  } catch (error) {
+    console.error("Error reading posts:", error);
+  }
+}
