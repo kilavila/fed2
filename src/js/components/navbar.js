@@ -1,3 +1,8 @@
+import { getUserInfo } from "../utilities/userinfo";
+
+const user = getUserInfo();
+console.log(user);
+
 const menuItems = [
   {
     name: "Home",
@@ -17,7 +22,7 @@ const menuItems = [
   },
   {
     name: "My Profile",
-    url: "/profile/",
+    url: `/profile/?name=${user.name}`,
   },
 ];
 
