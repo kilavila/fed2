@@ -1,3 +1,6 @@
+import { API_SOCIAL_PROFILES } from "../../api/constants";
+import { headers } from "../../api/headers";
+
 export async function readProfile(username) {
   try {
     const response = await fetch(
