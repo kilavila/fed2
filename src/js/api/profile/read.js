@@ -21,4 +21,22 @@ export async function readProfile(username) {
   }
 }
 
-export async function readProfiles(limit, page) {}
+export async function readProfiles(limit, page) {
+  try {
+    const response = await fetch(
+      `${API_SOCIAL_PROFILES}?limit=${limit}&page=${page}&_posts=true`,
+      {
+        method: "GET",
+        headers: headers(),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Response Status: ${response.status}`);
+    }
+    const result = await response.json();
+    console.log(result);
+    return result.data;
+  } catch (error) {
+    console.error("Error reading profiles:", error);
+  }
+}

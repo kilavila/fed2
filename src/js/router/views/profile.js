@@ -51,8 +51,9 @@ async function displayUserProfile(username) {
           articleTags.append(tagSpan);
         });
 
-        const img = document.createElement("img");
+        let img;
         if (post.media && post.media.url) {
+          img = document.createElement("img");
           img.src = post.media.url;
           img.alt = post.media.alt || "Post image";
         }
@@ -64,13 +65,9 @@ async function displayUserProfile(username) {
         });
 
         userInfoDiv.append(author);
-        articleBody.append(
-          articleTitle,
-          articleText,
-          articleTags,
-          img,
-          articlebtn
-        );
+        articleBody.append(articleTitle, articleText, articleTags, articlebtn);
+
+        if (img) articleBody.append(img);
         article.append(userInfoDiv, articleBody);
         document.querySelector(".posts").append(article);
       });
