@@ -14,11 +14,23 @@ export default function createPostCards(userPosts, isAuthorized) {
     const articleBody = document.createElement("div");
     articleBody.className = "article-Body";
 
+    /*
+  # ARTICLE TITLE
+*/
     const articleTitle = document.createElement("h2");
     articleTitle.innerText = post.title;
+    articleBody.append(articleTitle);
 
+    /*
+  # ARTICLE TEXT
+*/
     const articleText = document.createElement("p");
     articleText.innerText = post.body;
+    articleBody.append(articleText);
+
+    /*
+  # ARTICLE TAGS
+*/
 
     const articleTags = document.createElement("p");
     articleTags.className = "tags";
@@ -27,12 +39,16 @@ export default function createPostCards(userPosts, isAuthorized) {
       tagSpan.innerText = tag;
       articleTags.append(tagSpan);
     });
+    articleBody.append(articleTags);
 
-    let img;
+    /*
+  # ARTICLE MEDIA
+*/
     if (post.media && post.media.url) {
-      img = document.createElement("img");
+      const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || "Post image";
+      articleBody.append(img);
     }
     //! knapp for å slette og redigere. i en if setning. stemmer local med api i såfall vil vi legge til api.
     const articlebtn = document.createElement("button");
@@ -40,16 +56,23 @@ export default function createPostCards(userPosts, isAuthorized) {
     articlebtn.addEventListener("click", () => {
       window.location.href = `/post/single-post/?id=${post.id}`;
     });
+    articleBody.append(articlebtn);
 
     //! kode som blir kjørt når du ser på din egen bruker.
     if (isAuthorized) {
-      //delit btn med en funk som blir kjørt.
-      //edit- ta ti ny side som kan redigere side.
+      const editBtn = document.createElement("button");
+      editBtn.innerText = "Edit";
+      editBtn.addEventListener("click", () => {
+        window.location.href = `/post/update/?id=${post.id}`;
+      });
+      const deleteBtn = document.createElement("button");
+      deleteBtn.innerText = "Delete";
+      deleteBtn.addEventListener("click", () => {
+        console.log("deleted post", post.id);
+      });
+      articleBody.append(editBtn, deleteBtn);
     }
 
-    articleBody.append(articleTitle, articleText, articleTags, articlebtn);
-
-    if (img) articleBody.append(img);
     article.append(userInfoDiv, articleBody);
   });
 
