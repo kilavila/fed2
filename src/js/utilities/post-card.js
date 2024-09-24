@@ -1,6 +1,11 @@
 export default function createPostCards(userPosts, isAuthorized) {
-  const article = document.createElement("article");
+  const articlesContainer = document.createElement("div");
+  articlesContainer.className = "articles-container";
+
   userPosts.map((post) => {
+    const articleContainer = document.createElement("div");
+    articleContainer.className = "article-Container";
+
     const userInfoDiv = document.createElement("div");
     userInfoDiv.className = "user-Info";
 
@@ -15,23 +20,22 @@ export default function createPostCards(userPosts, isAuthorized) {
     articleBody.className = "article-Body";
 
     /*
-  # ARTICLE TITLE
-*/
+      # ARTICLE TITLE
+    */
     const articleTitle = document.createElement("h2");
     articleTitle.innerText = post.title;
     articleBody.append(articleTitle);
 
     /*
-  # ARTICLE TEXT
-*/
+      # ARTICLE TEXT
+    */
     const articleText = document.createElement("p");
     articleText.innerText = post.body;
     articleBody.append(articleText);
 
     /*
-  # ARTICLE TAGS
-*/
-
+      # ARTICLE TAGS
+    */
     const articleTags = document.createElement("p");
     articleTags.className = "tags";
     post.tags.map((tag) => {
@@ -42,23 +46,28 @@ export default function createPostCards(userPosts, isAuthorized) {
     articleBody.append(articleTags);
 
     /*
-  # ARTICLE MEDIA
-*/
+      # ARTICLE MEDIA
+    */
     if (post.media && post.media.url) {
+      const mediaDiv = document.createElement("div");
+      mediaDiv.className = "media-container";
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || "Post image";
-      articleBody.append(img);
+      mediaDiv.append(img);
+      articleBody.append(mediaDiv);
     }
-    //! knapp for å slette og redigere. i en if setning. stemmer local med api i såfall vil vi legge til api.
+
+    const buttonDiv = document.createElement("div");
+    buttonDiv.className = "button-container";
+
     const articlebtn = document.createElement("button");
     articlebtn.innerText = "Read Post";
     articlebtn.addEventListener("click", () => {
       window.location.href = `/post/single-post/?id=${post.id}`;
     });
-    articleBody.append(articlebtn);
+    buttonDiv.append(articlebtn);
 
-    //! kode som blir kjørt når du ser på din egen bruker.
     if (isAuthorized) {
       const editBtn = document.createElement("button");
       editBtn.innerText = "Edit";
@@ -70,11 +79,13 @@ export default function createPostCards(userPosts, isAuthorized) {
       deleteBtn.addEventListener("click", () => {
         console.log("deleted post", post.id);
       });
-      articleBody.append(editBtn, deleteBtn);
+      buttonDiv.append(editBtn, deleteBtn);
     }
 
-    article.append(userInfoDiv, articleBody);
+    articleBody.append(buttonDiv);
+    articleContainer.append(userInfoDiv, articleBody);
+    articlesContainer.append(articleContainer);
   });
 
-  return article;
+  document.body.append(articlesContainer);
 }
