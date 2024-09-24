@@ -1,3 +1,4 @@
+import { onDeletePost } from "../ui/post/delete";
 export default function createPostCards(userPosts, isAuthorized) {
   const articlesContainer = document.createElement("div");
   articlesContainer.className = "articles-container";
