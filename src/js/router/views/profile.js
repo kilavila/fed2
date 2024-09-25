@@ -3,10 +3,7 @@ import { getUserInfo } from "../../utilities/userinfo";
 import { readProfile } from "../../api/profile/read";
 import createPostCards from "../../utilities/post-card";
 authGuard();
-// 1 navn fra url
-// 2. hent bruker med navn fra url
-// 3. if API user = localstorageuser add slett btn, rediger
-// 4. move updateform to js.
+
 
 const userInfo = getUserInfo();
 const nameUrl = new URLSearchParams(window.location.search);

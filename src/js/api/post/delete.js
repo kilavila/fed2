@@ -1,3 +1,6 @@
+import { API_SOCIAL_POSTS } from "../constants";
+import { headers } from "../headers";
+
 export async function deletePost(id) {
   try {
     const response = await fetch(`${API_SOCIAL_POSTS}/${id}`, {
@@ -7,9 +10,10 @@ export async function deletePost(id) {
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }
-    const result = await response.json();
-    console.log(result);
-    return result.data;
+    if (response.status === 204) {
+      return true;
+    }
+    return false;
   } catch (error) {
     console.error("Error deleting post:", error);
   }

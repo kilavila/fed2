@@ -65,8 +65,10 @@ export default function createPostCards(userPosts, isAuthorized) {
       });
       const deleteBtn = document.createElement("button");
       deleteBtn.innerText = "Delete";
-      deleteBtn.addEventListener("click", () => {
-        console.log("deleted post", post.id);
+      deleteBtn.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        await onDeletePost(articleContainer, post.id);
       });
       buttonDiv.append(editBtn, deleteBtn);
     }

@@ -1,32 +1,22 @@
 import { deletePost } from "../../api/post/delete";
 
-export async function onDeletePost(event, postId) {
-  event.preventDefault();
+export async function onDeletePost(postElement, postId) {
+  const confirmation = confirm("Are you sure you want to delete this post?");
+  if (!confirmation) return;
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.innerText = "Delete";
+  try {
+    const response = await deletePost(postId);
 
-  deleteBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
+    if (response) {
+      console.log(`Post with ID ${postId} was deleted successfully`);
 
-    const confirmation = confirm("Are you sure you want to delete this post?");
-    if (!confirmation) return;
+      if (postElement) postElement.remove();
 
-    try {
-      const response = await deletePost(postId);
-
-      if (response) {
-        console.log(`Post with ID ${postId} was deleted successfully`);
-
-        const postElement = event.target.closest(".article-Container");
-        if (postElement) postElement.remove();
-      } else {
-        console.error("Failed to delete post: No response from API");
-      }
-    } catch (error) {
-      console.error("Error deleting post:", error);
+      alert("Post deleted successfully");
+    } else {
+      console.error("Failed to delete post: No response from API");
     }
-  });
-
-  return deleteBtn;
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+  }
 }
