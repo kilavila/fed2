@@ -2,7 +2,6 @@ import { getUserInfo } from "../utilities/userinfo";
 let meny;
 if (localStorage.token) {
   const user = getUserInfo();
-  console.log(user);
 
   meny = [
     {

@@ -28,11 +28,11 @@ export async function onSinglePost(id) {
       img.src = post.media.url;
       img.alt = post.media.alt || "Post image";
       postContainer.appendChild(img);
-    } else {
-      const defaultImg = document.createElement("img");
-      defaultImg.src = "/img/default.jpg";
-      defaultImg.alt = "Default image";
-      postContainer.appendChild(defaultImg);
+      // } else {
+      //   const defaultImg = document.createElement("img");
+      //   defaultImg.src = "/img/default.jpg";
+      //   defaultImg.alt = "Default image";
+      //   postContainer.appendChild(defaultImg);
     }
     const tags = document.createElement("p");
     tags.innerText = post.tags ? post.tags.join(", ") : "No tags";

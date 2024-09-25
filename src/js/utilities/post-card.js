@@ -20,23 +20,14 @@ export default function createPostCards(userPosts, isAuthorized) {
     const articleBody = document.createElement("div");
     articleBody.className = "article-Body";
 
-    /*
-      # ARTICLE TITLE
-    */
     const articleTitle = document.createElement("h2");
     articleTitle.innerText = post.title;
     articleBody.append(articleTitle);
 
-    /*
-      # ARTICLE TEXT
-    */
     const articleText = document.createElement("p");
     articleText.innerText = post.body;
     articleBody.append(articleText);
 
-    /*
-      # ARTICLE TAGS
-    */
     const articleTags = document.createElement("p");
     articleTags.className = "tags";
     post.tags.map((tag) => {
@@ -46,9 +37,6 @@ export default function createPostCards(userPosts, isAuthorized) {
     });
     articleBody.append(articleTags);
 
-    /*
-      # ARTICLE MEDIA
-    */
     if (post.media && post.media.url) {
       const mediaDiv = document.createElement("div");
       mediaDiv.className = "media-container";
@@ -87,6 +75,5 @@ export default function createPostCards(userPosts, isAuthorized) {
     articleContainer.append(userInfoDiv, articleBody);
     articlesContainer.append(articleContainer);
   });
-
-  document.body.append(articlesContainer);
+  return articlesContainer;
 }

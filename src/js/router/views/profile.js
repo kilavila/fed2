@@ -14,22 +14,35 @@ const name = nameUrl.get("name");
 
 async function displayUserProfile(username) {
   const userProfile = await readProfile(username);
-  console.log(userProfile);
 
   if (userProfile) {
-    const avatar = userProfile.avatar || "default-avatar.png";
     const profile = document.querySelector(".profile");
 
     const profilName = document.createElement("p");
     profilName.innerText = userProfile.name;
 
-    const avatarImg = document.createElement("img");
-    avatarImg.src = avatar;
+    profile.append(profilName);
 
-    profile.append(profilName, avatarImg);
+    if (userProfile.avatar) {
+      const avatarImg = document.createElement("img");
+      avatarImg.src = userProfile.avatar.url
+        ? userProfile.avatar.url
+        : `https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png`;
+
+      avatarImg.alt = userProfile.avatar.alt
+        ? userProfile.avatar.alt
+        : `${userProfile.name}'s avatar`;
+
+      avatarImg.classList.add("avatar");
+      profile.append(avatarImg);
+    }
+
     if (userProfile.posts.length > 0) {
       const isAuthorized = userInfo.email === userProfile.email ? true : false;
-      const articles = createPostCards(userProfile.posts, isAuthorized);
+      const articles = createPostCards(
+        userProfile.posts.reverse(),
+        isAuthorized
+      );
 
       document.querySelector(".posts").append(articles);
     }

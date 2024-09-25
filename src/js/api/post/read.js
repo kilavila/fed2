@@ -42,8 +42,7 @@ export async function readPosts(limit = 12, page = 1, tag) {
   }
 }
 
-
-//! hvor du vil hente ut postene til en spesss bruker. 
+//! hvor du vil hente ut postene til en spesss bruker.
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   try {
     const response = await fetch(

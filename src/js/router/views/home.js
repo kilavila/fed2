@@ -11,7 +11,6 @@ const name = userInfo.name;
 document.querySelector(".welcomeUser").innerHTML = name || "Annonymus";
 
 const Allposts = await readPosts();
-console.log(Allposts);
 
 const articles = createPostCards(Allposts, false);
 
