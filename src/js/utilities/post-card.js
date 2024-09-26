@@ -1,4 +1,5 @@
 import { onDeletePost } from "../ui/post/delete";
+
 export default function createPostCards(userPosts, isAuthorized) {
   const articlesContainer = document.createElement("div");
   articlesContainer.className = "articles-container";
@@ -60,8 +61,10 @@ export default function createPostCards(userPosts, isAuthorized) {
     if (isAuthorized) {
       const editBtn = document.createElement("button");
       editBtn.innerText = "Edit";
-      editBtn.addEventListener("click", () => {
-        window.location.href = `/post/update/?id=${post.id}`;
+      editBtn.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        window.location.href = `/post/edit/?id=${post.id}`;
       });
       const deleteBtn = document.createElement("button");
       deleteBtn.innerText = "Delete";

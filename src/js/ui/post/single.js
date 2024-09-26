@@ -41,7 +41,6 @@ export async function onSinglePost(id) {
 
     document.body.appendChild(postContainer);
   } catch (error) {
-    console.error("Error updating post content:", error);
-    alert("There was an error updating the post content. Please try again.");
+    console.error("Error fetching post:", error);
   }
 }

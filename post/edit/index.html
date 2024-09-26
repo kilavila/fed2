@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,9 +10,33 @@
 
   <body>
     <h1>Edit Post</h1>
-
     <form name="editPost">
-      <button>Edit Post</button>
+      <div>
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" required maxlength="20" />
+      </div>
+
+      <div>
+        <label for="body">Body</label>
+        <textarea id="body" name="body" required maxlength="200"></textarea>
+      </div>
+
+      <div>
+        <label for="tags">Tags</label>
+        <input id="tags" type="text" name="tags" maxlength="20" />
+      </div>
+
+      <div>
+        <label for="media">Image URL</label>
+        <input
+          id="media"
+          type="text"
+          name="media"
+          maxlength="255"
+          placeholder="Enter image URL"
+        />
+      </div>
+      <button>Update Post</button>
     </form>
   </body>
 </html>

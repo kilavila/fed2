@@ -13,14 +13,14 @@ export async function readPost(id) {
       throw new Error(`Response Status: ${response.status}`);
     }
     const result = await response.json();
-    console.log(result);
-    return result.data;
+    return result.data || result;
   } catch (error) {
-    console.error("Error reading post:", error);
+    throw new Error(
+      `Failed to fetch post with ID: ${id}. Error: ${error.message}`
+    );
   }
 }
 
-//get posts- bare forskjelldige måter å hente ting på//
 export async function readPosts(limit = 12, page = 1, tag) {
   try {
     const response = await fetch(
@@ -42,7 +42,6 @@ export async function readPosts(limit = 12, page = 1, tag) {
   }
 }
 
-//! hvor du vil hente ut postene til en spesss bruker.
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   try {
     const response = await fetch(

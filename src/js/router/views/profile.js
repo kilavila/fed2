@@ -4,7 +4,6 @@ import { readProfile } from "../../api/profile/read";
 import createPostCards from "../../utilities/post-card";
 authGuard();
 
-
 const userInfo = getUserInfo();
 const nameUrl = new URLSearchParams(window.location.search);
 const name = nameUrl.get("name");
@@ -36,10 +35,7 @@ async function displayUserProfile(username) {
 
     if (userProfile.posts.length > 0) {
       const isAuthorized = userInfo.email === userProfile.email ? true : false;
-      const articles = createPostCards(
-        userProfile.posts.reverse(),
-        isAuthorized
-      );
+      const articles = createPostCards(userProfile.posts, isAuthorized);
 
       document.querySelector(".posts").append(articles);
     }
