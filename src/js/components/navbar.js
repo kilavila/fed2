@@ -1,36 +1,29 @@
-import { onLogout } from "../ui/auth/logout";
+// import { onLogout } from "../ui/auth/logout";
 import { getUserInfo } from "../utilities/userInfo";
 
-let meny;
 const user = getUserInfo();
-
-if (user) {
-  meny = [
-    {
-      name: "Home",
-      url: "/",
-    },
-    {
-      name: "New Post",
-      url: "/post/create/",
-    },
-    {
-      name: "My Profile",
-      url: `/profile/?name=${user.name}`,
-    },
-  ];
-} else {
-  meny = [
-    {
-      name: "Login",
-      url: "/auth/login/",
-    },
-    {
-      name: "Register",
-      url: "/auth/register/",
-    },
-  ];
-}
+const meny = [
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "New Post",
+    url: "/post/create/",
+  },
+  {
+    name: "My Profile",
+    url: `/profile/?name=${user.name}`,
+  },
+  {
+    name: "Login",
+    url: "/auth/login/",
+  },
+  {
+    name: "Register",
+    url: "/auth/register/",
+  },
+];
 
 export default function navbar() {
   const nav = document.createElement("nav");
@@ -50,12 +43,12 @@ export default function navbar() {
     menu.append(atag);
   });
 
-  if (user) {
-    const logout = document.createElement("button");
-    logout.innerText = "Logout";
-    logout.addEventListener("click", onLogout)
-    menu.append(logout);
-  }
+  // if (user) {
+  //   const logout = document.createElement("button");
+  //   logout.innerText = "Logout";
+  //   logout.addEventListener("click", onLogout)
+  //   menu.append(logout);
+  // }
 
   nav.append(branding, menu);
 
