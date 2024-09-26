@@ -1,4 +1,5 @@
 import home from "./views/home.js";
+
 // NOTE: Adding special comments describing
 // the functions we use with types, params etc.
 // Add a comment at the very top of the file: // @ts-check
