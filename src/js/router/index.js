@@ -1,10 +1,13 @@
 // NOTE: Adding special comments describing
 // the functions we use with types, params etc.
 // Add a comment at the very top of the file: // @ts-check
+
+import navbar from "../components/navbar.js";
+
 // to get type checking on this file
 export default async function router(pathname = window.location.pathname) {
 
-  console.log("Running router function");
+  navbar();
 
   switch (pathname) {
     case "/":
