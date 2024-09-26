@@ -1,5 +1,5 @@
 import { onLogout } from "../ui/auth/logout";
-import { getUserInfo } from "../utilities/userinfo";
+import { getUserInfo } from "../utilities/userInfo";
 let meny;
 if (localStorage.token) {
   const user = getUserInfo();
