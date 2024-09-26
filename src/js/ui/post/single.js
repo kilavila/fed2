@@ -27,6 +27,8 @@ export async function onSinglePost(id) {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || "Post image";
+      img.height = 300;
+      img.width = 300;
       postContainer.appendChild(img);
     }
     const tags = document.createElement("p");
