@@ -1,3 +1,4 @@
+import home from "./views/home.js";
 // NOTE: Adding special comments describing
 // the functions we use with types, params etc.
 // Add a comment at the very top of the file: // @ts-check
@@ -12,7 +13,8 @@ export default async function router(pathname = window.location.pathname) {
 
   switch (pathname) {
     case "/":
-      await import("./views/home.js");
+      // await import("./views/home.js");
+      home();
       break;
     case "/auth/":
       await import("./views/auth.js");
