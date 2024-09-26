@@ -30,12 +30,12 @@ export async function readPosts(limit = 12, page = 1, tag) {
         headers: headers(),
       }
     );
-    console.log(response);
+
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }
     const result = await response.json();
-    console.log(result);
+
     return result.data;
   } catch (error) {
     console.error("Error reading posts:", error);
@@ -51,12 +51,12 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
         headers: headers(),
       }
     );
-    console.log(response);
+
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }
     const result = await response.json();
-    console.log(result);
+
     return result.data;
   } catch (error) {
     console.error("Error reading posts:", error);

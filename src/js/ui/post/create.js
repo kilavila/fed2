@@ -7,13 +7,15 @@ export async function onCreatePost(event) {
   const title = form ? form[0].value : "";
   const body = form ? form[1].value : "";
   const tags = form ? form[2].value : "";
-  const media = form ? form[3].value : "";
+  const mediaUrl = form ? form[3].value : "";
+  const mediaAlt = form ? form[4].value : "";
 
   const tagArr = tags.split(" ");
 
   const imgExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
 
   const isValidImageUrl = (url) => {
+    if (!url) return false;
     try {
       const urlObject = new URL(url);
       const extension = urlObject.pathname.split(".").pop().toLowerCase();
@@ -24,19 +26,21 @@ export async function onCreatePost(event) {
     }
   };
 
-  if (!isValidImageUrl(media)) {
-    alert("Please enter a valid image URL");
-    return;
+  if (media.length > 0) {
+    const isValidimage = isValidImageUrl(media);
+
+    if (!isValidimage) {
+      alert("Please enter a valid image URL");
+      return;
+    }
   }
   const reqBody = {
-    title: title,
-    body: body,
-    tags: tagArr,
-    media: {
-      url: media,
-      alt: "",
-    },
+    title,
+    body: body || undefined,
+    tags: tagArr.length > 0 ? tagArr : undefined,
+    media: mediaUrl ? { url: mediaUrl, alt: mediaAlt || undefined } : undefined,
   };
+
   try {
     const post = await createPost(reqBody);
 

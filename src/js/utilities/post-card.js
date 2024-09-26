@@ -38,6 +38,14 @@ export default function createPostCards(userPosts, isAuthorized) {
     });
     articleBody.append(articleTags);
 
+    const dateDiv = document.createElement("div");
+    dateDiv.className = "post-date";
+
+    const date = new Date(post.created);
+    dateDiv.innerText = `Posted on: ${date.toLocaleDateString()}`;
+
+    articleBody.append(dateDiv);
+
     if (post.media && post.media.url) {
       const mediaDiv = document.createElement("div");
       mediaDiv.className = "media-container";

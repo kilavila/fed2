@@ -1,14 +1,6 @@
 import { API_SOCIAL_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers";
-export async function updatePost(id, { title, body, tags, media }) {
-  const reqBody = {
-    title: title,
-    body: body,
-    tags: tags.split(" "),
-    media: {
-      url: media,
-    },
-  };
+export async function updatePost(id, reqBody) {
   try {
     const response = await fetch(`${API_SOCIAL_POSTS}/${id}`, {
       method: "PUT",
@@ -30,14 +22,3 @@ export async function updatePost(id, { title, body, tags, media }) {
     console.error("Error editing post:", error);
   }
 }
-// {
-//     "title": "string",
-//     "body": "string",
-//     "tags": [
-//       "string"
-//     ],
-//     "media": {
-//       "url": "string",
-//       "alt": ""
-//     }
-//   }
