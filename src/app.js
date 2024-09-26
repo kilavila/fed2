@@ -8,11 +8,11 @@
 // https://www.npmjs.com/package/jsdoc
 
 import "./css/style.css";
-import navbar from "./js/components/navbar";
+// import navbar from "./js/components/navbar";
 import router from "./js/router";
 
 console.log("Running app.js");
 
-navbar();
+// navbar();
 
 await router(window.location.pathname);
