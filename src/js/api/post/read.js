@@ -31,10 +31,16 @@ export async function readPosts(limit = 12, page = 1, tag) {
       }
     );
 
+    console.log("Fetching posts:");
+    console.log(response);
+
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }
     const result = await response.json();
+
+    console.log("Parsing JSON:");
+    console.log(result);
 
     return result.data;
   } catch (error) {

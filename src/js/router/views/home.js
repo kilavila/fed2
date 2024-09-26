@@ -5,17 +5,18 @@ import createPostCards from "../../utilities/post-card";
 
 authGuard();
 
-async function home() {
-  const userInfo = getUserInfo();
-  const name = userInfo.name;
+const userInfo = getUserInfo();
+const name = userInfo.name;
 
-  document.querySelector(".welcomeUser").innerHTML = name || "Annonymus";
+console.log("Name: " + name);
 
-  const Allposts = await readPosts();
+document.querySelector(".welcomeUser").innerHTML = name || "Annonymus";
 
-  const articles = createPostCards(Allposts, false);
+const Allposts = await readPosts();
 
-  document.querySelector(".posts").append(articles);
-}
+const articles = createPostCards(Allposts, false);
 
-await home();
+const postsDiv = document.querySelector(".posts");
+postsDiv.append(articles);
+
+console.log("Loaded page: Home");

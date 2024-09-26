@@ -7,6 +7,9 @@
  * @param {string} pathname
  */
 export default async function router(pathname = window.location.pathname) {
+
+  console.log("Running router function");
+
   switch (pathname) {
     case "/":
       await import("./views/home.js");
