@@ -1,21 +1,14 @@
-import home from "./views/home.js";
-
 // NOTE: Adding special comments describing
 // the functions we use with types, params etc.
 // Add a comment at the very top of the file: // @ts-check
 // to get type checking on this file
-/**
- * @function router
- * @param {string} pathname
- */
 export default async function router(pathname = window.location.pathname) {
 
   console.log("Running router function");
 
   switch (pathname) {
     case "/":
-      // await import("./views/home.js");
-      home();
+      await import("./views/home.js");
       break;
     case "/auth/":
       await import("./views/auth.js");

@@ -3,24 +3,21 @@ import { authGuard } from "../../utilities/authGuard";
 import { getUserInfo } from "../../utilities/userInfo";
 import createPostCards from "../../utilities/post-card";
 
-async function home() {
-  authGuard();
+authGuard();
 
-  const userInfo = getUserInfo();
-  const name = userInfo.name;
+const userInfo = getUserInfo();
+const name = userInfo.name;
 
-  console.log("Name: " + name);
+console.log("Name: " + name);
 
-  document.querySelector(".welcomeUser").innerHTML = name || "Annonymus";
+document.querySelector(".welcomeUser").innerHTML = name || "Annonymus";
 
-  const Allposts = await readPosts();
+const Allposts = await readPosts();
 
-  const articles = createPostCards(Allposts, false);
+const articles = createPostCards(Allposts, false);
 
-  const postsDiv = document.querySelector(".posts");
-  postsDiv.append(articles);
+const postsDiv = document.querySelector(".posts");
+postsDiv.append(articles);
 
-  console.log("Loaded page: Home");
-}
+console.log("Loaded page: Home");
 
-export default home;
