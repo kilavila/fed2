@@ -1,3 +1,4 @@
+import { onLogout } from "../ui/auth/logout";
 import { getUserInfo } from "../utilities/userinfo";
 let meny;
 if (localStorage.token) {
@@ -41,6 +42,12 @@ export default function navbar() {
   const menu = document.createElement("div");
   menu.classList.add("menu");
 
+  const logout = document.createElement("button");
+  logout.innerText = "Logout";
+  logout.addEventListener("click",onLogout)
+  
+
+  
   meny.map((item) => {
     const atag = document.createElement("a");
     atag.href = item.url;
@@ -48,7 +55,9 @@ export default function navbar() {
 
     menu.append(atag);
   });
+  menu.append(logout);
   nav.append(branding, menu);
+
 
   document.body.prepend(nav);
 }
